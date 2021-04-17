@@ -65,11 +65,12 @@ func (r *request) newHTTPRequest() (*http.Request, error) {
 	return req, nil
 }
 
-func NewRequest(url, method string, body io.Reader, client client.Client) Request {
+func NewRequest(url, method string, body io.Reader, client client.Client, m ...Modifier) Request {
 	return &request{
-		URL:    url,
-		Method: method,
-		Body:   body,
-		Client: client,
+		URL:       url,
+		Method:    method,
+		Body:      body,
+		Client:    client,
+		Modifiers: m,
 	}
 }
